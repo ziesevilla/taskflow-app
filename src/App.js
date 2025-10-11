@@ -5,42 +5,32 @@ import './App.css';
 function Home() {
   return (
     <div>
-      <h1>🐳 Docker React App</h1>
-      <p>Welcome to your Dockerized React application!</p>
-      <p>This app is running in a Docker container with hot reload enabled.</p>
+      <h1>Task Flow React App</h1>
     </div>
   );
 }
 
-function About() {
+function AddTask() {
   return (
     <div>
-      <h1>About</h1>
-      <p>This is a sample React app containerized with Docker.</p>
-      <p>Features:</p>
-      <ul>
-        <li>React 18</li>
-        <li>React Router</li>
-        <li>Hot reload in development</li>
-        <li>Production-ready builds</li>
-      </ul>
+      <h1>Add Task</h1>
     </div>
   );
 }
-
+ 
 function App() {
   return (
     <Router>
       <div className="App">
         <nav className="navbar">
           <Link to="/" className="nav-link">Home</Link>
-          <Link to="/about" className="nav-link">About</Link>
+          <Link to="/addTask" className="nav-link">Add Task</Link>
         </nav>
         
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<AddTask />} />
           </Routes>
         </main>
       </div>
