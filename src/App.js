@@ -9,7 +9,7 @@ function App() {
   // --- Task 3: State Management Logic ---
   const [tasks, setTasks] = useState([]);
 
-  // Add a task (updated variable name for input param)
+  // Add a task (uses taskDetails for consistency)
   const addTask = (taskDetails) => {
     setTasks([...tasks, taskDetails]);
   };
@@ -41,7 +41,7 @@ function App() {
         
         <main className="main-content">
           <Routes>
-            {/* Pass tasks and deleteTask prop to TaskListView */}
+            {/* Pass tasks and deleteTask props to TaskListView */}
             <Route
               path="/"
               element={
