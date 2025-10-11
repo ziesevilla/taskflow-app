@@ -1,51 +1,484 @@
-.App {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+/* App.css — Refactored Fluid Ocean Theme (minimal comments) */
+
+/* =========================
+   Variables
+   ========================= */
+:root{
+  --ocean-primary: #1E3A8A;
+  --ocean-accent: #0EA5E9;
+  --ocean-bg: #F0F9FF;
+  --ocean-card-border: #E0F2FE;
+  --ocean-shadow-color: rgba(59,130,246,0.1);
+  --ocean-shadow: 0 4px 6px var(--ocean-shadow-color);
+  --priority-low: #10B981;
+  --priority-medium: #3B82F6;
+  --priority-high: #EF4444;
+  --wave-light: rgba(14,165,233,0.05);
+  --wave-medium: rgba(30,58,138,0.08);
+  --glass-white: rgba(255,255,255,0.8);
+  --focus-glow: rgba(14,165,233,0.3);
+  --border-subtle: rgba(14,165,233,0.2);
+  --neutral-text: #666;
+  --muted-text: #888;
 }
 
-.navbar {
-  background-color: #282c34;
-  padding: 1rem;
-  margin-bottom: 2rem;
-  border-radius: 8px;
+/* =========================
+   Animations
+   ========================= */
+@keyframes flow {
+  0%,100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
 }
 
-.nav-link {
-  color: #61dafb;
+@keyframes waveSway {
+  0%,100% { transform: translateX(0) rotate(0deg); }
+  50% { transform: translateX(3px) rotate(1deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   Base typography & layout
+   ========================= */
+* { box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html,body { height:100%; margin:0; }
+body{
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+  color: var(--neutral-text);
+  background: var(--ocean-bg);
+}
+
+h1,h2,h5{
+  font-family: 'Poppins', sans-serif;
+  font-weight:600;
+  letter-spacing:1px;
+  color:var(--ocean-primary);
+  margin:0 0 1rem 0;
+}
+
+h1{ font-size:1.75rem; }
+h2{ font-size:1.25rem; margin-bottom:1.5rem; }
+
+.App{
+  max-width:800px;
+  margin:0 auto;
+  padding:20px;
+  text-align:center;
+}
+
+/* =========================
+   Navbar & Links
+   ========================= */
+.ocean-navbar{
+  background: linear-gradient(135deg,var(--ocean-primary),var(--ocean-accent));
+  padding:1rem;
+  margin-bottom:2rem;
+  border-radius:8px;
+  box-shadow:var(--ocean-shadow);
+  animation:fadeIn .8s ease-out;
+  position:relative;
+  overflow:hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* or space-between, depending on layout */
+  gap: 1.25rem; /* 👈 controls the distance between links */
+}
+
+
+.navbar-brand{
+  color:#fff !important;
+  font-family:'Poppins',sans-serif;
+  font-weight:700;
+  font-size:1.5rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  animation:waveSway 4s ease-in-out infinite;
+}
+
+.flow-icon{
+  color:#fff;
+  font-size:1.2rem;
+  margin-left:.5rem;
+  animation:flow 2s ease-in-out infinite;
+  display:inline-block;
+  position:relative;
+  z-index:10;
+}
+
+.ocean-link {
+  color: rgba(255, 255, 255, 0.85); /* 👈 more visible */
   text-decoration: none;
-  margin: 0 1rem;
-  font-size: 1.2rem;
-  transition: color 0.3s;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
 }
 
-.nav-link:hover {
-  color: white;
+.ocean-link:hover {
+  color: #fff;
+  text-shadow: 0 0 6px rgba(173, 216, 230, 0.6); /* gentle glow */
+  transform: translateY(-2px);
+  animation: waveSway 1.5s ease-in-out infinite; /* continuous wave animation */
 }
 
-.main-content {
-  min-height: 400px;
+
+/* =========================
+   Header, Tagline
+   ========================= */
+.ocean-header{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-weight:700;
+  font-size:1.8rem;
+  margin-bottom:2rem;
+  animation:waveSway 3s ease-in-out infinite;
+  position:relative;
+  z-index:1;
 }
 
-h1 {
-  color: #282c34;
-  margin-bottom: 1rem;
+.header-text{
+  background:linear-gradient(90deg,var(--ocean-primary),var(--ocean-accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:waveSway 3s ease-in-out infinite;
 }
 
-p {
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 1rem;
+.wave-icon{
+  color:var(--ocean-accent) !important;
+  font-size:1.2rem;
+  text-shadow:0 1px 2px rgba(30,58,138,0.2);
+  animation:flow 2s ease-in-out infinite;
+  display:inline-block;
+  -webkit-background-clip:initial;
+  background-clip:initial;
+  position:relative;
+  z-index:10;
+  margin-left:5px;
 }
 
-ul {
-  text-align: left;
-  max-width: 400px;
-  margin: 0 auto;
+/* Tagline */
+.ocean-tagline{
+  text-align:center;
+  color:var(--ocean-accent);
+  font-family:'Poppins',sans-serif;
+  font-size:1.1rem;
+  font-style:italic;
+  font-weight:500;
+  letter-spacing:1.5px;
+  margin:1rem 0 2rem 0;
+  text-shadow:0 1px 2px rgba(30,58,138,0.1);
+  animation:fadeIn 1s ease-out, waveSway 4s ease-in-out infinite;
+  padding:1rem;
+  background: rgba(14,165,233,0.05);
+  border-radius:8px;
+  border:1px solid rgba(14,165,233,0.1);
 }
 
-li {
-  margin-bottom: 0.5rem;
-  color: #666;
+/* =========================
+   Ocean background container
+   ========================= */
+.ocean-bg{
+  background-color:var(--ocean-bg);
+  background-image:
+    linear-gradient(to bottom,var(--ocean-bg),#E0F2FE),
+    repeating-linear-gradient(90deg,transparent,transparent 20px,var(--wave-light) 20px,var(--wave-light)25px,var(--wave-medium)25px,var(--wave-medium)50px);
+  min-height:400px;
+  border-radius:12px;
+  padding:20px;
+  box-shadow:var(--ocean-shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+.ocean-btn{
+  background:linear-gradient(135deg,var(--ocean-primary),var(--ocean-accent));
+  border:none;
+  color:#fff;
+  border-radius:15px;
+  padding:12px 25px;
+  font-weight:600;
+  transition:transform .3s ease, box-shadow .3s ease;
+  position:relative;
+  overflow:hidden;
+  font-family:'Poppins',sans-serif;
+  letter-spacing:.5px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  animation:waveSway 4s ease-in-out infinite;
+}
+
+.ocean-btn:hover{
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:0 8px 15px rgba(14,165,233,0.3);
+  animation-duration:2s;
+}
+
+.ocean-btn:active{ transform:translateY(-1px) scale(.98); }
+
+.btn-icon{ margin-right:8px; font-size:1.2rem; display:inline-block; animation:flow 2s ease-in-out infinite; }
+
+.ocean-delete-btn{
+  background-color:var(--priority-high);
+  border:none;
+  color:#fff;
+  transition:all .3s ease;
+  border-radius:15px;
+  padding:8px 16px;
+  font-weight:600;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Inter',sans-serif;
+  letter-spacing:.5px;
+  animation:waveSway 4s ease-in-out infinite;
+}
+
+.ocean-delete-btn:hover{
+  background-color:#dc2626;
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 4px 8px rgba(239,68,68,0.3);
+  animation-duration:2s;
+}
+
+/* =========================
+   Form / Floating inputs
+   ========================= */
+.ocean-form{
+  background: linear-gradient(135deg, rgba(14,165,233,0.1), rgba(30,58,138,0.1));
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 20px rgba(14,165,233,0.15);
+  border:1px solid var(--border-subtle);
+  position:relative;
+  overflow:visible;
+  animation:fadeIn .8s ease-out;
+}
+
+.floating-input{ position:relative; margin-bottom:1rem; }
+
+.floating-input input,
+.floating-input textarea,
+.floating-input select,
+.ocean-form .form-control,
+.ocean-form .form-select{
+  border:2px solid rgba(14,165,233,0.3);
+  border-radius:12px;
+  padding:12px 15px;
+  transition:all .3s ease;
+  background:var(--glass-white);
+  font-family:'Inter',sans-serif;
+  position:relative;
+}
+
+.floating-input select:invalid {
+  color: transparent;
+}
+
+.floating-input select:invalid ~ .floating-label {
+  top: 12px;
+  left: 15px;
+  font-size: 0.9rem;
+  color: var(--muted-text);
+  background: transparent;
+  padding: 0;
+}
+
+/* When user focuses or selects a value */
+.floating-input select:focus ~ .floating-label,
+.floating-input select:valid ~ .floating-label {
+  top: -8px;
+  left: 10px;
+  font-size: 0.75rem;
+  color: var(--ocean-accent);
+  background: linear-gradient(135deg, rgba(14,165,233,0.1), rgba(30,58,138,0.1));
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+
+.floating-input select:invalid option:first-child{ color:#999; }
+
+.floating-input input:focus,
+.floating-input textarea:focus,
+.floating-input select:focus,
+.ocean-form .form-control:focus,
+.ocean-form .form-select:focus{
+  border-color:var(--ocean-accent) !important;
+  box-shadow:0 0 10px var(--focus-glow) !important;
+  outline:none !important;
+  transform:translateY(-1px);
+  color:inherit;
+  text-indent:0;
+}
+
+.floating-label{
+  position:absolute;
+  top:12px;
+  left:15px;
+  color:var(--muted-text);
+  transition:all .3s ease;
+  pointer-events:none;
+  font-family:'Inter',sans-serif;
+  font-size:.9rem;
+  z-index:1;
+}
+
+.floating-input input:focus ~ .floating-label,
+.floating-input textarea:focus ~ .floating-label,
+.floating-input select:focus ~ .floating-label,
+.floating-input input:not(:placeholder-shown) ~ .floating-label,
+.floating-input textarea:not(:placeholder-shown) ~ .floating-label,
+.floating-input select:valid ~ .floating-label{
+  top:-8px;
+  left:10px;
+  font-size:.75rem;
+  color:var(--ocean-accent);
+  background:linear-gradient(135deg, rgba(14,165,233,0.1), rgba(30,58,138,0.1));
+  padding:0 5px;
+  border-radius:4px;
+}
+
+.floating-input select:invalid:not(:focus) ~ .floating-label{
+  top:12px; left:15px; font-size:.9rem; color:var(--muted-text); background:transparent; padding:0;
+}
+
+/* Override Bootstrap consistency */
+.ocean-form .form-control,
+.ocean-form .form-select{
+  border-radius:12px !important;
+  padding:12px 15px !important;
+  transition:all .3s ease !important;
+  background:var(--glass-white) !important;
+}
+
+/* =========================
+   Priority select / dynamic classes
+   ========================= */
+.ocean-select{ border:1px solid var(--ocean-accent); color:var(--ocean-primary); }
+
+.ocean-select option[value=""]{ color:#999; font-style:italic; }
+
+.ocean-select option[value="Low"]{ color:var(--priority-low); }
+.ocean-select option[value="Medium"]{ color:var(--priority-medium); }
+.ocean-select option[value="High"]{ color:var(--priority-high); }
+
+/* dynamic class names applied from JS: .priority-empty / .priority-low / .priority-medium / .priority-high */
+.ocean-select.priority-empty{ border-color: rgba(14,165,233,0.3); box-shadow:none; }
+.ocean-select.priority-low{ border-color:var(--priority-low); box-shadow:0 0 5px rgba(16,185,129,0.3); }
+.ocean-select.priority-medium{ border-color:var(--priority-medium); box-shadow:0 0 5px rgba(59,130,246,0.3); }
+.ocean-select.priority-high{ border-color:var(--priority-high); box-shadow:0 0 5px rgba(239,68,68,0.3); }
+
+/* =========================
+   Lists & Cards
+   ========================= */
+.ocean-list{
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:var(--ocean-shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.ocean-list::before{
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--wave-light),var(--wave-medium),transparent);
+  animation:flow 3s ease-in-out infinite;
+  z-index:0;
+}
+
+.ocean-list > *{ position:relative; z-index:1; }
+
+.ocean-card{
+  border:1px solid var(--ocean-card-border);
+  border-radius:12px;
+  box-shadow:var(--ocean-shadow);
+  transition:all .3s ease;
+  background:#fff;
+  position:relative;
+  overflow:hidden;
+}
+
+.ocean-card::before{
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background:linear-gradient(90deg,transparent, rgba(14,165,233,0.05), transparent);
+  transition:left .5s ease;
+}
+
+.ocean-card:hover::before{ left:100%; }
+.ocean-card:hover{ transform:translateY(-5px); box-shadow:0 8px 15px rgba(59,130,246,0.2); animation:waveSway 2s ease-in-out; }
+
+.ocean-card .card-body{ padding:1.5rem; }
+.card-title{
+  color:var(--ocean-primary);
+  font-family:'Poppins',sans-serif;
+  font-weight:600;
+  margin-bottom:.5rem;
+  letter-spacing:.5px;
+}
+.card-text{ color:var(--neutral-text); font-family:'Inter',sans-serif; line-height:1.5; margin-bottom:1rem; }
+
+/* empty state text */
+.ocean-list .text-muted{ color:var(--ocean-accent); font-style:italic; font-family:'Inter',sans-serif; }
+
+/* =========================
+   Priority badges
+   ========================= */
+.ocean-priority-badge{
+  margin-left:.5rem;
+  font-size:.85rem;
+  font-weight:600;
+  border-radius:12px;
+  padding:.25rem .75rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.25rem;
+  transition:all .3s ease;
+  animation:fadeIn .4s ease-out;
+}
+
+.ocean-priority-badge.low{ background-color:var(--priority-low) !important; color:#fff; box-shadow:0 2px 4px rgba(16,185,129,0.2); }
+.ocean-priority-badge.medium{ background-color:var(--priority-medium) !important; color:#fff; box-shadow:0 2px 4px rgba(59,130,246,0.2); }
+.ocean-priority-badge.high{ background-color:var(--priority-high) !important; color:#fff; box-shadow:0 2px 4px rgba(239,68,68,0.2); }
+.ocean-priority-badge.default{ background-color:#6b7280 !important; color:#fff; }
+
+.ocean-priority-badge:hover{ transform:scale(1.05); box-shadow:0 4px 8px rgba(0,0,0,0.08); }
+.ocean-priority-badge > *{ animation:flow 2s ease-in-out infinite; }
+
+/* =========================
+   Utilities & small helpers
+   ========================= */
+.fade-in{ animation:fadeIn .6s ease-out forwards; }
+.ocean-form.fade-in{ animation:fadeIn .8s ease-out forwards; }
+
+ul{ text-align:left; max-width:400px; margin:0 auto; padding-left:1.25rem; }
+li{ margin-bottom:.5rem; color:var(--neutral-text); font-family:'Inter',sans-serif; }
+
+.p-0{ padding:0; }
+.mt-1{ margin-top:.25rem; }
+.mb-1{ margin-bottom:.25rem; }
+
+/* ensure interactive elements are accessible */
+button, input, select, textarea{ font-family:inherit; font-size:inherit; }
+
+/* keep icons visible and clickable */
+.wave-icon, .flow-icon, .btn-icon{ line-height:1; }
+
+/* fallback for legacy browsers */
+@supports(not (display: grid)){
+  /* no-op: grid not used in this sheet, but placeholder for future fallbacks */
 }

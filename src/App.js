@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa'; // For flow arrow icon in logo
 import TaskListView from './components/TaskListView';
 import AddTaskView from './components/AddTaskView';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,24 +23,27 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* Enhanced Bootstrap Navbar */}
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        {/* Enhanced Bootstrap Navbar with Ocean Theme */}
+        <nav className="navbar navbar-expand-lg ocean-navbar">
           <div className="container">
             <Link className="navbar-brand" to="/">
-              TaskFlow
+              TaskFlow <FaArrowRight className="flow-icon" />
             </Link>
             <div className="navbar-nav">
-              <Link className="nav-link" to="/">
+              <Link className="nav-link ocean-link" to="/">
                 Home
               </Link>
-              <Link className="nav-link" to="/add">
+              <Link className="nav-link ocean-link" to="/add">
                 Add Task
               </Link>
             </div>
           </div>
         </nav>
         
-        <main className="main-content">
+        <main className="main-content ocean-bg">
+          {/* New: Thematic Tagline */}
+          <p className="ocean-tagline">Navigate Your Tasks with Seamless Flow Like the Ocean</p>
+          
           <Routes>
             {/* Pass tasks and deleteTask props to TaskListView */}
             <Route
