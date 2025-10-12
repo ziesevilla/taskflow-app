@@ -432,6 +432,64 @@ h2{ font-size:1.25rem; margin-bottom:1.5rem; }
 }
 .card-text{ color:var(--neutral-text); font-family:'Inter',sans-serif; line-height:1.5; margin-bottom:1rem; }
 
+/* Enhanced card body for dynamic height and bottom-aligned footer */
+.ocean-card .card-body {
+  display: flex !important; /* Override Bootstrap default if needed */
+  flex-direction: column;
+  height: 100%; /* Ensures it fills the card */
+}
+
+.ocean-card .flex-grow-1 {
+  flex-grow: 1; /* Allows content to expand */
+}
+
+.ocean-card .mt-auto {
+  margin-top: auto; /* Pushes footer to bottom */
+}
+
+/* Optional: Ensure delete button is full-width in footer for better touch targets */
+.ocean-card .ocean-delete-btn.w-100 {
+  width: 100%;
+  border-radius: 8px; /* Slightly smaller radius to fit card */
+}
+
+/* Priority-based card accents (subtle top border + optional tint) */
+.ocean-card.priority-low {
+  border-top: 6px solid var(--priority-low); /* Green top stripe */
+  box-shadow: var(--ocean-shadow), 0 2px 4px rgba(16, 185, 129, 0.1); /* Subtle green glow */
+}
+
+.ocean-card.priority-medium {
+  border-top: 6px solid var(--priority-medium); /* Blue top stripe */
+  box-shadow: var(--ocean-shadow), 0 2px 4px rgba(59, 130, 246, 0.1); /* Subtle blue glow */
+}
+
+.ocean-card.priority-high {
+  border-top: 6px solid var(--priority-high); /* Red top stripe */
+  box-shadow: var(--ocean-shadow), 0 2px 8px rgba(239, 68, 68, 0.2); /* Stronger red glow for urgency */
+}
+
+.ocean-card.priority-default {
+  border-top: 6px solid var(--ocean-card-border); /* Neutral fallback */
+}
+
+/* Emoji in title: Ensure it aligns nicely and animates subtly */
+.ocean-card .card-title span[aria-label*="Priority"] {
+  font-size: 1.1em;
+  animation: flow 3s ease-in-out infinite;
+  margin-left: 0.5rem;
+  display: inline-block;
+  transform-origin: bottom center;
+}
+
+
+/* Optional: Subtle background tint for stronger differentiation */
+.ocean-card.priority-low { background: linear-gradient(to bottom, rgba(16, 185, 129, 0.02), #fff); }
+.ocean-card.priority-medium { background: linear-gradient(to bottom, rgba(59, 130, 246, 0.02), #fff); }
+.ocean-card.priority-high { background: linear-gradient(to bottom, rgba(239, 68, 68, 0.03), #fff); }
+
+
+
 /* empty state text */
 .ocean-list .text-muted{ color:var(--ocean-accent); font-style:italic; font-family:'Inter',sans-serif; }
 
@@ -458,6 +516,17 @@ h2{ font-size:1.25rem; margin-bottom:1.5rem; }
 
 .ocean-priority-badge:hover{ transform:scale(1.05); box-shadow:0 4px 8px rgba(0,0,0,0.08); }
 .ocean-priority-badge > *{ animation:flow 2s ease-in-out infinite; }
+
+/* Priority emoji at top of card */
+.ocean-card .priority-icon {
+  font-size: 1.5rem;              /* slightly larger for emphasis */
+  text-align: center;
+  margin-bottom: 0.5rem;          /* spacing before title */
+  animation: flow 3s ease-in-out infinite; /* gentle wave motion */
+  transform-origin: bottom center;
+  display: block;
+}
+
 
 /* =========================
    Utilities & small helpers

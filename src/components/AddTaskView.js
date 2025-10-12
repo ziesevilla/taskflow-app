@@ -61,9 +61,9 @@ const AddTaskView = ({ addTask }) => {
   required
 >
   <option value="" disabled hidden></option> {/* 👈 Placeholder option */}
-  <option value="Low">Low 🌿</option>
-  <option value="Medium">Medium 💧</option>
-  <option value="High">High 🔥</option>
+  <option value="Low">🌊 Low </option>
+  <option value="Medium">🌊🌊 Medium </option>
+  <option value="High">🌊🌊🌊 High </option>
 </select>
 <label htmlFor="priority" className="floating-label">Priority</label>
 
